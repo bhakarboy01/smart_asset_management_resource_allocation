@@ -1,0 +1,2 @@
+# smart_asset_management_resource_allocation
+Group Contribution Project
