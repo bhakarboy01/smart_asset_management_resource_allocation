@@ -3,8 +3,14 @@
 
 const { PrismaClient } = require("@prisma/client");
 const bcrypt = require("bcryptjs");
+const QRCode = require("qrcode");
 
 const db = new PrismaClient();
+
+async function generateQR(assetId) {
+  const url = `http://localhost:3000/assets?assetId=${assetId}`;
+  return QRCode.toDataURL(url, { width: 300, margin: 2, color: { dark: "#1a1a1a", light: "#ffffff" } });
+}
 
 async function main() {
   console.log("🌱 Seeding database...");
@@ -274,6 +280,14 @@ async function main() {
       },
     }),
   ]);
+
+  // ─── Generate QR Codes ─────────────────────────────────────────────────────
+  console.log("📱 Generating QR codes...");
+  for (const asset of assets) {
+    const qrCode = await generateQR(asset.id);
+    await db.asset.update({ where: { id: asset.id }, data: { qrCode } });
+  }
+  console.log("✅ QR codes generated for all assets.");
 
   // ─── Sample bookings ────────────────────────────────────────────────────────
   const canon = assets[0];
