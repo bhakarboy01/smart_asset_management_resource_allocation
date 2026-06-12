@@ -243,6 +243,12 @@ sampadaa/
 
 ---
 
+## Demo Video and Design Doc
+
+https://drive.google.com/drive/folders/1QxU737jc0PHJNDOxQExh0hGvBvRS4Mgf
+
+---
+
 ## 👥 Team
 
 Built with ❤️ for IIT Roorkee Hackathon
