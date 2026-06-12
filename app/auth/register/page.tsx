@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Eye, EyeOff, Mail, Lock, User, Hash, BookOpen, Phone } from "lucide-react";
+import { Eye, EyeOff, Mail, Lock, User, Hash, Phone, AlertCircle, ArrowRight } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
@@ -76,16 +76,17 @@ export default function RegisterPage() {
   }
 
   return (
-    <div>
+    <div className="animate-fade-in">
       <div className="mb-6">
-        <h2 className="text-3xl font-bold text-gray-900">Create account</h2>
-        <p className="text-gray-500 mt-2">Join the IIT Roorkee resource portal</p>
+        <h2 className="text-3xl font-bold text-gray-900 tracking-tight">Create account</h2>
+        <p className="text-gray-500 mt-2 text-[15px]">Join the IIT Roorkee resource portal</p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         {errors.general && (
-          <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-lg text-sm">
-            {errors.general}
+          <div className="flex items-center gap-2.5 bg-red-50 border border-red-200/80 text-red-600 px-4 py-3 rounded-xl text-sm animate-slide-up">
+            <AlertCircle className="w-4 h-4 flex-shrink-0" />
+            <span>{errors.general}</span>
           </div>
         )}
 
@@ -184,15 +185,16 @@ export default function RegisterPage() {
           </div>
         </div>
 
-        <Button type="submit" className="w-full" size="lg" loading={loading}>
-          Create Account
+        <Button type="submit" className="w-full !mt-6 group" size="lg" loading={loading}>
+          <span>Create Account</span>
+          {!loading && <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-0.5 transition-transform" />}
         </Button>
       </form>
 
       <p className="mt-5 text-center text-sm text-gray-500">
         Already have an account?{" "}
-        <Link href="/auth/login" className="text-orange-500 font-medium hover:underline">
-          Sign in
+        <Link href="/auth/login" className="text-orange-500 font-semibold hover:text-orange-600 transition-colors">
+          Sign in →
         </Link>
       </p>
     </div>

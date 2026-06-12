@@ -13,7 +13,8 @@
     "db:migrate": "prisma migrate dev",
     "db:seed": "node --import tsx scripts/seed.ts",
     "db:studio": "prisma studio",
-    "db:reset": "prisma migrate reset --force && node --import tsx scripts/seed.ts"
+    "db:reset": "prisma migrate reset --force && node --import tsx scripts/seed.ts",
+    "postbuild": "mkdir -p .next/standalone/prisma && cp prisma/dev.db .next/standalone/prisma/dev.db"
   },
   "dependencies": {
     "@prisma/client": "^5.22.0",

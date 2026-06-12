@@ -3,6 +3,9 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   output: "standalone",
   outputFileTracingRoot: process.cwd(),
+  outputFileTracingIncludes: {
+    "/**": ["./prisma/**"],
+  },
   experimental: {
     serverActions: {
       allowedOrigins: ["localhost:3000"],

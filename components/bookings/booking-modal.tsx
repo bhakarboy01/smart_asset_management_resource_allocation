@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/components";
 import type { Asset } from "@/types";
-import { formatDate } from "@/lib/utils";
+// utils used inline via format helpers in parent components
 
 interface BookingModalProps {
   asset: Asset;

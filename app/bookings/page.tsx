@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { CalendarCheck, Package } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Spinner, EmptyState, Badge } from "@/components/ui/components";
+import { Spinner, EmptyState } from "@/components/ui/components";
 import type { Booking } from "@/types";
 import {
   formatDate,
@@ -29,11 +29,7 @@ export default function BookingsPage() {
   const [status, setStatus] = useState("");
   const [total, setTotal] = useState(0);
 
-  useEffect(() => {
-    fetchBookings();
-  }, [status]);
-
-  async function fetchBookings() {
+  const fetchBookings = useCallback(async () => {
     setLoading(true);
     try {
       const params = new URLSearchParams();
@@ -48,7 +44,11 @@ export default function BookingsPage() {
     } finally {
       setLoading(false);
     }
-  }
+  }, [status]);
+
+  useEffect(() => {
+    fetchBookings();
+  }, [fetchBookings]);
 
   async function handleCancel(bookingId: string) {
     if (!confirm("Are you sure you want to cancel this booking?")) return;

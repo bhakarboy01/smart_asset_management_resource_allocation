@@ -12,6 +12,11 @@ import {
   cn,
 } from "@/lib/utils";
 import type { BookingStatus } from "@/types";
+import type { Prisma } from "@prisma/client";
+
+type BookingWithAsset = Prisma.BookingGetPayload<{
+  include: { asset: { include: { category: true } } };
+}>;
 
 export const metadata = { title: "Borrowing History" };
 
@@ -106,7 +111,7 @@ export default async function HistoryPage() {
   );
 }
 
-function BookingRow({ booking }: { booking: any }) {
+function BookingRow({ booking }: { booking: BookingWithAsset }) {
   const isOverdue =
     booking.status === "ISSUED" && new Date(booking.toDate) < new Date();
   const displayStatus: BookingStatus = isOverdue ? "OVERDUE" : booking.status;
