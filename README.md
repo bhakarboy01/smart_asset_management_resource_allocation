@@ -93,7 +93,7 @@ A production-ready, full-stack asset management platform built for the **Cultura
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/your-team/sampadaa.git
+git clone https://github.com/bhakarboy01/smart_asset_management_resource_allocation.git
 cd sampadaa
 ```
 
